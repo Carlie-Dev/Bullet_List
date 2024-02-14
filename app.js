@@ -12,7 +12,7 @@ ItemsList.addEventListener('click', function (ev) {
     if (ev.target && ev.target.matches('.list-item')) {
         // Remove the clicked item
         ev.target.remove();
-    }else{
+    } else {
         let text = ev.target.innerHTML;
         ev.target.innerHTML = text.toUpperCase();
         ev.target.style.color = 'red';
@@ -47,23 +47,26 @@ document.getElementById('add-item').addEventListener('click', function (ev) {
     let mainList = document.getElementById('items-list');
     let myInput = document.getElementById('item-input');
     console.log(ev);
+    console.log('button was clicked');
 
     //Gets the inserted text
     const itemText = myInput.value.trim();
+    if (itemText != "") {
+        //Creates new item
+        let newItem = document.createElement('li');
+        newItem.style.fontVariant = 'small-caps';
+        newItem.classList.add('list-item');
 
-    console.log('button was clicked');
+        //Text content sets the content
+        newItem.textContent = itemText;
+        console.log(newItem);
 
-    //Creates new item
-    let newItem = document.createElement('li');
-    newItem.style.fontVariant = 'small-caps';
-    newItem.classList.add('list-item');
+        mainList.appendChild(newItem);
 
-    //Text content sets the content
-    newItem.textContent = itemText;
-    console.log(newItem);
+        //To clear the box for the next input.
+        myInput.value = '';
+    }
 
-    mainList.appendChild(newItem);
 
-    //To clear the box for the next input.
-    myInput.value = '';
+
 })
